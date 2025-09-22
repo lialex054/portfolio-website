@@ -1,5 +1,6 @@
 import { projects } from "@/lib/projects";
 import { notFound } from "next/navigation";
+import { Badge } from "@/components/ui/badge"; // Updated import path to match shadcn structure
 
 type ProjectPageProps = {
   params: {
@@ -8,10 +9,8 @@ type ProjectPageProps = {
 };
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  // Find the project data based on the slug from the URL
   const project = projects.find((p) => p.slug === params.slug);
 
-  // If no project is found, show a 404 page
   if (!project) {
     notFound();
   }
@@ -26,16 +25,26 @@ export default function ProjectPage({ params }: ProjectPageProps) {
       </div>
 
       {/* Project Description */}
-      <p className="max-w-3xl text-gray-400 leading-relaxed mb-12">
+      <p className="max-w-3xl text-gray-400 leading-relaxed mb-8">
         {project.description}
       </p>
 
+      {/* --- NEW SKILLS SECTION --- */}
+      <div className="flex flex-col gap-4 mb-12">
+        <h2 className="text-2xl font-semibold text-gray-300">SKILLS</h2>
+        <div className="flex flex-wrap items-center gap-2">
+          {project.skills.map((skill) => (
+            <Badge key={skill} variant="secondary">
+              {skill}
+            </Badge>
+          ))}
+        </div>
+      </div>
+      {/* --- END NEW SECTION --- */}
+
       {/* Image Gallery */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Large Image */}
         <div className="md:row-span-2 bg-gray-300 rounded-md min-h-[400px]"></div>
-        
-        {/* Small Images */}
         <div className="bg-gray-300 rounded-md min-h-[192px]"></div>
         <div className="bg-gray-300 rounded-md min-h-[192px]"></div>
         <div className="bg-gray-300 rounded-md min-h-[192px]"></div>
