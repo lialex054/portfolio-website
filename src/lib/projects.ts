@@ -10,7 +10,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "project-name-one",
-    name: "PROJECT NAME ONE",
+    name: "PULSAR",
     module: "MODULE NAME",
     date: "October 2025 - December 2025",
     description:
@@ -19,7 +19,7 @@ export const projects: Project[] = [
   },
   {
     slug: "project-name-two",
-    name: "PROJECT NAME TWO",
+    name: "Cyclogic",
     module: "ANOTHER MODULE",
     date: "August 2025 - September 2025",
     description:
@@ -28,7 +28,7 @@ export const projects: Project[] = [
   },
   {
     slug: "project-name-three",
-    name: "PROJECT NAME THREE",
+    name: "HIVE-FU",
     module: "DESIGN MODULE",
     date: "June 2025 - July 2025",
     description:

@@ -4,6 +4,7 @@ import GlassesFollower from "@/components/GlassesFollower";
 import { projects } from "@/lib/projects";
 import { ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion"; // Import framer-motion tools
+import Link from "next/link";
 
 export default function Home() {
   const mostRecentProject = projects[0];
@@ -35,9 +36,11 @@ export default function Home() {
             products that merge technical craft with user-focused design.
           </p>
           <div className="w-80 h-96 bg-gray-300 rounded-md"></div>
-          <button className="mt-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
-            My Projects
-          </button>
+          <Link href={`/projects/${mostRecentProject.slug}`}>
+            <button className="mt-8 px-6 py-3 bg-gray-800 text-white rounded-lg hover:bg-gray-700">
+              My Projects
+            </button>
+          </Link>
         </div>
 
         {/* Animated Scroll Down Indicator */}
