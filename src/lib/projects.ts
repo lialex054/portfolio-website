@@ -22,22 +22,22 @@ export const projects: Project[] = [
   },
   {
     slug: "project-name-two",
-    name: "PROJECT NAME TWO",
-    module: "ANOTHER MODULE",
-    date: "August 2025 - September 2025",
+    name: "Google Companion",
+    module: "Industrial Design Engineering",
+    date: "January 2024 - June 2024",
     description:
-      "This is a description for the second project. It showcases different skills and challenges overcome during development.",
+      "The Google Companion was developed to address the challenge young adults with ADHD face in maintaining focus and transitioning out of hyperfocus. Through extensive user research, including interviews with users and industry experts, we identified key pain points related to productivity. We built a subtle desktop focus companion that guides users' productivity journeys, creating a personalized experience. The project was highly impactful, with user testing revealing a 60% increase in study time. The team learned the importance of continuous iteration, creating over 20 component iterations to perfect the user experience and ensure the product was highly usable.",
     images: ["p2_large.jpg", "p2_small1.jpg", "p2_small2.jpg", "p2_small3.jpg", "p2_small4.jpg"],
-    skills: ["Figma", "UI/UX Design", "User Research"],
+    skills: ["Figma", "UI/UX Design", "User Research", "Prototyping", "Graphic Design", "Video Editing", "User Testing"],
   },
   {
     slug: "project-name-three",
-    name: "PROJECT NAME THREE",
-    module: "DESIGN MODULE",
-    date: "June 2025 - July 2025",
+    name: "Pulsar",
+    module: "Physical Computing",
+    date: "October 2023 - December 2023",
     description:
-      "This project focused heavily on user interface and user experience design principles, from wireframing to final implementation.",
+      "The project began with a core problem: how might we enable two young adults with musical backgrounds to create and express music in real-time through a physical, tangible vessel? Guided by the prompt \"more than meets the eye,\" we embarked on a journey of exploration and design. We started by obsessing over the Hoberman Sphere, ultimately deciding to use it as the physical form to represent the \"breath\" of music. The manufacturing process was a crucial part of the project. We used laser cutting to create the repetitive parts of the Hoberman Sphere from scratch. After encountering high friction with initial wood pieces, we iterated on the design and material, successfully switching to acrylic. For the side controllers, 3D printing was the ideal method, with the designs modeled in Blender and Fusion 360 after creating initial prototypes with low-fidelity foam. The final prototype was brought to life through intricate programming on a Bela board, an Arduino-style microcontroller. Using C++, we mapped values from various sensors to musical parameters, such as using a proximity sensor for volume and a Trill Sensor for pitch and melody. A stick controller was also implemented for tremolo. We used PureData, an open-source software, to generate music using a random number generator and our basic knowledge of music theory to create a piece that could be controlled physically by the sphere. The project successfully met our initial goal, resulting in a unique and fully functional musical instrument that embodies our design prompt.",
     images: ["p3_large.jpg", "p3_small1.jpg", "p3_small2.jpg", "p3_small3.jpg", "p3_small4.jpg"],
-    skills: ["HTML", "CSS", "JavaScript", "Vite"],
+    skills: ["Manufacturing", "Prototyping", "Electronics & Programming: ", "Music & Audio", "CAD", "Arduino Style C++", "PureData"],
   },
 ];
