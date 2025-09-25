@@ -1,4 +1,3 @@
-import ProjectNavbar from "@/components/ProjectNavbar";
 import ProjectSidebar from "@/components/ProjectSidebar";
 
 export default function ProjectsLayout({
@@ -8,7 +7,6 @@ export default function ProjectsLayout({
 }) {
   return (
     <div className="bg-gray-900 min-h-screen text-gray-100">
-      <ProjectNavbar />
       <ProjectSidebar />
       {/* Add margin to the left to make space for the fixed sidebar */}
       <main className="ml-64 pt-20">
