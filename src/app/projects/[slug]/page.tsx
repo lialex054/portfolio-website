@@ -9,7 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { promises as fs } from 'fs'
 import path from 'path'
 import ProjectGallery from '@/components/ProjectGallery'
-import ProjectDocuments from '@/components/ProjectDocuments' // NEW: Import the documents component
+import ProjectDocuments from '@/components/ProjectDocuments'
 
 type ProjectPageProps = {
   params: Promise<{
@@ -30,7 +30,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound()
   }
 
-  // --- Image Loading Logic (No Changes Here) ---
   let projectImages: string[] = []
   try {
     const imageDir = path.join(process.cwd(), 'public', 'images', slug)
@@ -47,25 +46,23 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <section>
-      {/* Project Header (No Changes) */}
+      {/* Project Header */}
       <div className="mb-8">
         <h1 className="text-5xl font-extrabold uppercase tracking-tight mb-4">
           {project.name}
         </h1>
-        <h2 className="text-2xl font-semibold text-gray-300">
+        {/* UPDATED: Text color is now theme-aware */}
+        <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-300">
           {project.module}
         </h2>
-        <p className="text-lg text-gray-400 mt-1">{project.date}</p>
+        {/* UPDATED: Text color is now theme-aware */}
+        <p className="text-lg text-gray-500 dark:text-gray-400 mt-1">{project.date}</p>
       </div>
 
-      {/* Project Description (No Changes) */}
-      <p className="max-w-3xl text-gray-400 leading-relaxed mb-8">
-        {project.description}
-      </p>
-
-      {/* Skills Section (No Changes) */}
+      {/* Skills Section */}
       <div className="flex flex-col gap-4 mb-12">
-        <h2 className="text-2xl font-semibold text-gray-300">SKILLS</h2>
+        {/* UPDATED: Text color is now theme-aware */}
+        <h3 className="text-2xl font-semibold text-gray-600 dark:text-gray-300">SKILLS</h3>
         <div className="flex flex-wrap items-center gap-2">
           {project.skills.map((skill) => (
             <Badge key={skill} variant="secondary">
@@ -75,11 +72,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </div>
 
-      {/* UPDATED: Image Gallery */}
+      {/* Project Description */}
+      {/* UPDATED: Text color is now theme-aware */}
+      <p className="max-w-3xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
+        {project.description}
+      </p>
+
       <ProjectGallery images={projectImages} projectName={project.name} />
 
       <ProjectDocuments documents={project.documents} />
-
     </section>
   )
 }

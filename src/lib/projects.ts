@@ -19,12 +19,8 @@ export const projects: Project[] = [
     skills: ["Literature Review", "User Research Methods", "CAD", "OnShape", "Blender", "Presentation Skills", "STEEP Framework", "Speculative Engineering"],
     documents: [
       {
-        label: "Technical Report",
-        url: "https://www.dropbox.com/s/example/your-technical-report.pdf?dl=0",
-      },
-      {
-        label: "User Research Findings",
-        url: "https://www.dropbox.com/s/example/user-research.pdf?dl=0",
+        label: "Full Report",
+        url: "https://www.dropbox.com/scl/fi/4lgg4xbvrr9c6ghiu1uwq/Group14-HIVEFU.pdf?rlkey=hnap7uc11ufwp4ljlp3wwwg9s&st=yi17dz0e&dl=0",
       },
     ],
   },
@@ -53,7 +49,7 @@ export const projects: Project[] = [
     skills: ["Figma", "UI/UX Design", "User Research", "Prototyping", "Graphic Design", "Video Editing", "User Testing"],
     documents: [
       {
-        label: "Portfolio",
+        label: "Development Report",
         url: "https://www.dropbox.com/scl/fi/9jij06dawndid7ext6gsd/companion-a3-portfolio.pdf?rlkey=aytxqlacxyp4jbc65imi84kzh&e=1&st=t5tepnsv&dl=0",
       },
       {

@@ -1,38 +1,41 @@
+// FILE: src/components/ProjectNavbar.tsx
+
 import Link from "next/link";
-import Image from "next/image"; // Import the Next.js Image component
+import Image from "next/image";
 import { Linkedin, Mail } from "lucide-react";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 export default function ProjectNavbar() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm">
+    // UPDATED: Added transition-colors and duration-300 here
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm transition-colors duration-300 ease-in-out">
       <div className="flex items-center justify-between py-6 px-12">
-        {/* Logo Link */}
         <Link href="/">
-          {/* Black logo (for light mode) */}
           <Image
             src="/logo-black.svg"
             alt="Logo"
-            width={50} // Adjust size as needed
+            width={50}
             height={50}
-            className="block dark:hidden" // This is visible by default, but hidden in dark mode
+            className="block dark:hidden"
           />
-          {/* White logo (for dark mode) */}
           <Image
             src="/logo-white.svg"
             alt="Logo"
-            width={50} // Adjust size as needed
+            width={50}
             height={50}
-            className="hidden dark:block" // This is hidden by default, but visible in dark mode
+            className="hidden dark:block"
           />
         </Link>
 
-        {/* Social Links */}
         <div className="flex items-center gap-6">
+          <ThemeToggleButton />
           <a href="https://www.linkedin.com/in/alexli429" target="_blank" rel="noopener noreferrer">
-            <Linkedin className="w-6 h-6 text-gray-300 hover:text-white transition-colors" />
+            {/* UPDATED: Removed the individual transition-colors from the icon */}
+            <Linkedin className="w-6 h-6 text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white" />
           </a>
           <a href="mailto:lialex054@gmail.com">
-            <Mail className="w-6 h-6 text-gray-300 hover:text-white transition-colors" />
+            {/* UPDATED: Removed the individual transition-colors from the icon */}
+            <Mail className="w-6 h-6 text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white" />
           </a>
         </div>
       </div>

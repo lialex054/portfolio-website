@@ -1,7 +1,10 @@
+// FILE: app/layout.tsx
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavBar from "@/components/ProjectNavbar"; // 1. Import the NavBar
+import NavBar from "@/components/ProjectNavbar";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,14 +27,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    // UPDATED: Removed the hard-coded "dark" class. next-themes will handle this.
+    // Added suppressHydrationWarning as recommended by next-themes.
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900 text-gray-100`}
+        // UPDATED: Replaced hard-coded dark styles with theme-aware classes and a smooth transition.
+        className={`${geistSans.variable} ${geistMono.variable} 
+                   antialiased bg-white text-gray-900 
+                   dark:bg-gray-900 dark:text-gray-100
+                   transition-colors duration-300 ease-in-out`}
       >
-        <NavBar /> {/* 2. Add the NavBar component here */}
-        <main className="px-4 sm:px-6 md:px-12 lg:px-24 py-8">
-          {children} {/* 3. Page content renders inside the main tag */}
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+        >
+          <NavBar />
+          {/* UPDATED: Removed the <main> tag from here to prevent nesting issues.
+              Page-specific layouts (like your ProjectsLayout) can define their own <main> tag. */}
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
