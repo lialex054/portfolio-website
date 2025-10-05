@@ -1,19 +1,18 @@
-// FILE: app/layout.tsx
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/ProjectNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { SidebarProvider } from "@/context/SidebarContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin"], // Add this line
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin"], // And this line
 });
 
 export const metadata: Metadata = {
@@ -27,11 +26,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // UPDATED: Removed the hard-coded "dark" class. next-themes will handle this.
-    // Added suppressHydrationWarning as recommended by next-themes.
     <html lang="en" suppressHydrationWarning>
       <body
-        // UPDATED: Replaced hard-coded dark styles with theme-aware classes and a smooth transition.
         className={`${geistSans.variable} ${geistMono.variable} 
                    antialiased bg-white text-gray-900 
                    dark:bg-gray-900 dark:text-gray-100
@@ -42,10 +38,10 @@ export default function RootLayout({
           defaultTheme="dark"
           enableSystem
         >
-          <NavBar />
-          {/* UPDATED: Removed the <main> tag from here to prevent nesting issues.
-              Page-specific layouts (like your ProjectsLayout) can define their own <main> tag. */}
-          {children}
+          <SidebarProvider>
+            <NavBar />
+            {children}
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>

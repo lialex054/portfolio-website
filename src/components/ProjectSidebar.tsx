@@ -3,81 +3,140 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { getSortedProjects } from "@/lib/project-utils";
-import { useState, useEffect, useRef, useMemo } from "react";
-import { motion, useSpring, useVelocity, useTransform } from "framer-motion";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+} from "framer-motion";
+import { useSidebar } from "@/context/SidebarContext";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
-export default function ProjectSidebar() {
+const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
   const pathname = usePathname();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  
-  const sortedProjects = useMemo(() => getSortedProjects(), []);
+  const projects = useMemo(() => getSortedProjects(), []);
 
-  const navRef = useRef<HTMLElement>(null);
-  const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
-
-  const [positions, setPositions] = useState<{ top: number; height: number }[]>([]);
-
-  useEffect(() => {
-    if (!navRef.current) return;
-    const measuredPositions = itemRefs.current.map(el => {
-      if (!el) return { top: 0, height: 0 };
-      return { top: el.offsetTop, height: el.offsetHeight };
-    });
-    setPositions(measuredPositions);
-  }, [sortedProjects]);
-
-  const activeIndex = sortedProjects.findIndex(p => pathname === `/projects/${p.slug}`);
+  const activeIndex = projects.findIndex(
+    (p) => pathname === `/projects/${p.slug}`
+  );
   const targetIndex = hoveredIndex ?? activeIndex;
 
-  const dotY = useSpring(0, { stiffness: 500, damping: 40 });
-  const dotHeight = useSpring(6, { stiffness: 500, damping: 40 });
-
+  // Trigger the stretch each time the active/hovered target changes
+  const [animTick, setAnimTick] = useState(0);
+  const isFirst = useRef(true);
   useEffect(() => {
-    if (targetIndex !== -1 && positions[targetIndex]) {
-      const { top, height } = positions[targetIndex];
-      dotY.set(top + height / 2 - 3);
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
     }
-  }, [targetIndex, positions, dotY]);
-
-  const yVelocity = useVelocity(dotY);
-  const stretch = useTransform(yVelocity, [-300, 0, 300], [2.5, 1, 2.5]);
+    setAnimTick((t) => t + 1);
+  }, [targetIndex]);
 
   return (
-    <aside className="fixed top-0 bottom-0 left-0 w-64 p-12 flex items-center">
-      <nav 
-        ref={navRef}
-        className="relative flex flex-col gap-4 text-left w-full"
-        onMouseLeave={() => setHoveredIndex(null)}
-      >
-        {sortedProjects.map((project, index) => {
-          const isTarget = hoveredIndex === index || (hoveredIndex === null && activeIndex === index);
-          return (
-            <Link
-              key={project.slug}
-              ref={(el) => { itemRefs.current[index] = el; }}
-              href={`/projects/${project.slug}`}
-              className={`
-                relative text-base transition-colors truncate
-                ${isTarget 
-                  ? "font-semibold text-gray-900 dark:text-white" // UPDATED: Active state is bold and theme-aware
-                  : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"}
-              `}
-              onMouseEnter={() => setHoveredIndex(index)}
-            >
-              {project.name}
-            </Link>
-          );
-        })}
+    <nav
+      className="relative w-full p-12 text-left"
+      onMouseLeave={() => setHoveredIndex(null)}
+    >
+      <h2 className="mb-2 text-lg font-semibold text-gray-500 dark:text-gray-400">
+        Projects
+      </h2>
 
-        <motion.div
-          className="absolute left-[-16px] w-1.5 rounded-full bg-gray-900 dark:bg-white"
-          style={{ 
-            y: dotY, 
-            scaleY: stretch,
-            height: dotHeight,
-          }}
-        />
-      </nav>
-    </aside>
+      <LayoutGroup id="sidebar">
+        <ul className="relative flex flex-col gap-4">
+          {projects.map((project, index) => {
+            const isTarget =
+              targetIndex === index && index !== -1;
+
+            return (
+              <li key={project.slug} className="relative pl-4">
+                {isTarget && (
+                  // Wrapper that moves with a spring between items
+                  <motion.span
+                    layoutId="active-dot"
+                    className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2"
+                    transition={{
+                      layout: {
+                        type: "spring",
+                        stiffness: 650,
+                        damping: 36,
+                        mass: 0.35,
+                      },
+                    }}
+                  >
+                    {/* Inner dot that stretches briefly on each move */}
+                    <motion.span
+                      key={animTick}
+                      className="block h-1.5 w-1.5 rounded-full bg-black dark:bg-white"
+                      initial={{ scaleX: 1, scaleY: 1 }}
+                      animate={{
+                        scaleY: [1, 1.8, 1],
+                        scaleX: [1, 0.85, 1],
+                      }}
+                      transition={{
+                        duration: 0.35,
+                        times: [0, 0.45, 1],
+                        ease: "easeOut",
+                      }}
+                    />
+                  </motion.span>
+                )}
+
+                <Link
+                  href={`/projects/${project.slug}`}
+                  onClick={onLinkClick}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  className={`relative truncate text-base transition-colors ${
+                    isTarget
+                      ? "font-semibold text-gray-900 dark:text-white"
+                      : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                  }`}
+                >
+                  {project.name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </LayoutGroup>
+    </nav>
+  );
+};
+
+export default function ProjectSidebar() {
+  const { isSidebarOpen, toggleSidebar } = useSidebar();
+  useScrollLock(isSidebarOpen);
+
+  return (
+    <>
+      {/* --- DESKTOP SIDEBAR --- */}
+      <aside className="hidden lg:fixed lg:top-0 lg:bottom-0 lg:left-0 lg:flex lg:w-64 lg:items-center bg-white/90 backdrop-blur-sm dark:bg-gray-900/90">
+        <NavContent />
+      </aside>
+
+      {/* --- MOBILE SIDEBAR --- */}
+      <AnimatePresence>
+        {isSidebarOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={toggleSidebar}
+              className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+            />
+            <motion.aside
+              initial={{ x: "-100%" }}
+              animate={{ x: "0%" }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-0 bottom-0 left-0 z-50 w-80 max-w-[calc(100%-4rem)] bg-white/90 backdrop-blur-sm dark:bg-gray-900/90 lg:hidden"
+            >
+              <NavContent onLinkClick={toggleSidebar} />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

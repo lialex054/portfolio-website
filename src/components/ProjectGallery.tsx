@@ -6,11 +6,12 @@ import Image from "next/image";
 import { useState } from "react";
 import ImageOverlay from "./ImageOverlay";
 import { AnimatePresence } from "framer-motion";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 export default function ProjectGallery({ images, projectName }: { images: string[]; projectName: string }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  // REMOVED: The 'direction' state is no longer needed
-  // const [direction, setDirection] = useState(0); 
+  
+  useScrollLock(selectedImageIndex !== null);
 
   const handleImageClick = (index: number) => {
     setSelectedImageIndex(index);

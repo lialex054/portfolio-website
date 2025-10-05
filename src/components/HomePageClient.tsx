@@ -1,5 +1,3 @@
-// FILE: src/components/HomePageClient.tsx
-
 "use client";
 
 import { useRef, useState } from "react";
@@ -10,6 +8,8 @@ import { ChevronDown } from "lucide-react";
 import GlassesFollower from "@/components/GlassesFollower";
 import type { Project } from "@/lib/projects";
 import ImageOverlay from "./ImageOverlay";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { useScrollLock } from "@/hooks/use-scroll-lock";
 
 interface HomePageClientProps {
   mostRecentProject: Project;
@@ -20,8 +20,11 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   const projectSectionRef = useRef<HTMLElement>(null);
-
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+
+  useScrollLock(selectedImageIndex !== null);
+  
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const handleImageClick = (index: number) => setSelectedImageIndex(index);
   const handleCloseOverlay = () => setSelectedImageIndex(null);
@@ -38,19 +41,20 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
   };
 
   return (
-    // UPDATED: Removed hard-coded dark background to inherit from layout
     <main className="relative">
       
       <section className="relative min-h-screen flex items-center px-4 sm:px-6 md:px-12 lg:px-24">
         <div className="absolute inset-0 flex items-center justify-end pointer-events-none pr-10">
-          <div className="pointer-events-auto">
-            <GlassesFollower />
-          </div>
+          {/* 3. Conditionally render the GlassesFollower only on desktop */}
+          {isDesktop && (
+            <div className="pointer-events-auto">
+              <GlassesFollower />
+            </div>
+          )}
         </div>
 
         <div className="relative z-20">
           <h1 className="text-4xl font-bold mb-4">My Portfolio</h1>
-          {/* UPDATED: Text colors now adapt to the theme */}
           <p className="max-w-xl text-gray-600 dark:text-gray-300 mb-6">
             Hi, I’m Alex — a design engineering student passionate about building
             products that merge technical craft with user-focused design.
@@ -66,7 +70,6 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
           />
           
           <Link href={`/projects/${mostRecentProject.slug}`}>
-            {/* UPDATED: Button styles now adapt to the theme */}
             <button className="mt-8 px-6 py-3 bg-gray-100 text-gray-900 rounded-lg hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 transition-colors">
               My Projects
             </button>
@@ -78,7 +81,6 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
           style={{ opacity }}
           onClick={handleScrollDown}
         >
-          {/* UPDATED: Icon color now adapts to the theme */}
           <ChevronDown className="w-8 h-8 text-gray-500 dark:text-gray-400 animate-bounce" />
         </motion.div>
       </section>
