@@ -1,18 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Outfit, Geist } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/ProjectNavbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SidebarProvider } from "@/context/SidebarContext";
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+});
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"], // Add this line
+  subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"], // And this line
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -28,9 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} 
-                   antialiased bg-white text-gray-900 
-                   dark:bg-gray-900 dark:text-gray-100
+        className={`${geistSans.variable} ${geistMono.variable} ${outfit.variable} 
+                   antialiased bg-white text-zinc-900 
+                   dark:bg-zinc-900 dark:text-zinc-100
                    transition-colors duration-300 ease-in-out`}
       >
         <ThemeProvider
@@ -40,7 +45,7 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <NavBar />
-            {children}
+            <main className="pt-24 px-4 sm:px-6 md:px-12 lg:px-24">{children}</main>
           </SidebarProvider>
         </ThemeProvider>
       </body>

@@ -16,8 +16,7 @@ export default function ThemeToggleButton() {
 
   // This prevents a hydration mismatch error
   if (!isMounted) {
-    // UPDATED: The placeholder now matches the button's size and shape
-    return <div className="p-2 rounded-full w-10 h-10 bg-gray-200 dark:bg-gray-700 animate-pulse" />;
+    return <div className="p-2 rounded-full w-10 h-10 bg-zinc-200 dark:bg-zinc-700 animate-pulse" />;
   }
 
   const isDark = theme === "dark";
@@ -25,13 +24,13 @@ export default function ThemeToggleButton() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="p-2 rounded-full transition-colors hover:bg-gray-200 dark:hover:bg-gray-700"
+      className="p-2 rounded-full transition-colors hover:bg-zinc-200 dark:hover:bg-zinc-700"
       aria-label="Toggle theme"
     >
       {isDark ? (
-        <Sun className="w-6 h-6 text-gray-200" />
+        <Sun className="w-6 h-6 text-zinc-200" />
       ) : (
-        <Moon className="w-6 h-6 text-gray-800" />
+        <Moon className="w-6 h-6 text-zinc-800" />
       )}
     </button>
   );

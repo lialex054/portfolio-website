@@ -38,7 +38,7 @@ const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
       className="relative w-full p-12 text-left"
       onMouseLeave={() => setHoveredIndex(null)}
     >
-      <h2 className="mb-2 text-lg font-semibold text-gray-500 dark:text-gray-400">
+      <h2 className="mb-2 text-lg font-semibold text-zinc-500 dark:text-zinc-400">
         Projects
       </h2>
 
@@ -56,6 +56,7 @@ const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
                     layoutId="active-dot"
                     className="pointer-events-none absolute left-0 top-1/2 -translate-y-1/2"
                     transition={{
+                      type: "spring",
                       layout: {
                         type: "spring",
                         stiffness: 650,
@@ -63,12 +64,13 @@ const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
                         mass: 0.35,
                       },
                     }}
+                    aria-hidden="true"
                   >
                     {/* Inner dot that stretches briefly on each move */}
                     <motion.span
                       key={animTick}
                       className="block h-1.5 w-1.5 rounded-full bg-black dark:bg-white"
-                      initial={{ scaleX: 1, scaleY: 1 }}
+                      initial={{ scaleX: 1, scaleY: 1, color: 'transparent' }}
                       animate={{
                         scaleY: [1, 1.8, 1],
                         scaleX: [1, 0.85, 1],
@@ -78,6 +80,7 @@ const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
                         times: [0, 0.45, 1],
                         ease: "easeOut",
                       }}
+                      aria-hidden="true"
                     />
                   </motion.span>
                 )}
@@ -86,10 +89,10 @@ const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
                   href={`/projects/${project.slug}`}
                   onClick={onLinkClick}
                   onMouseEnter={() => setHoveredIndex(index)}
-                  className={`relative truncate text-base transition-colors ${
+                  className={`relative truncate text-base ${
                     isTarget
-                      ? "font-semibold text-gray-900 dark:text-white"
-                      : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+                      ? "font-semibold text-zinc-900 dark:text-white"
+                      : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white"
                   }`}
                 >
                   {project.name}
@@ -110,7 +113,7 @@ export default function ProjectSidebar() {
   return (
     <>
       {/* --- DESKTOP SIDEBAR --- */}
-      <aside className="hidden lg:fixed lg:top-0 lg:bottom-0 lg:left-0 lg:flex lg:w-64 lg:items-center bg-white/90 backdrop-blur-sm dark:bg-gray-900/90">
+      <aside className="hidden lg:fixed lg:top-0 lg:bottom-0 lg:left-0 lg:flex lg:w-64 lg:items-center bg-white/90 backdrop-blur-sm dark:bg-zinc-900/90">
         <NavContent />
       </aside>
 
@@ -130,7 +133,7 @@ export default function ProjectSidebar() {
               animate={{ x: "0%" }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
-              className="fixed top-0 bottom-0 left-0 z-50 w-80 max-w-[calc(100%-4rem)] bg-white/90 backdrop-blur-sm dark:bg-gray-900/90 lg:hidden"
+              className="fixed top-0 bottom-0 left-0 z-50 w-80 max-w-[calc(100%-4rem)] bg-white/90 backdrop-blur-sm dark:bg-zinc-900/90 lg:hidden"
             >
               <NavContent onLinkClick={toggleSidebar} />
             </motion.aside>

@@ -33,33 +33,38 @@ export default function ProjectGallery({ images, projectName }: { images: string
     <>
       {/* UPDATED: The image grid code has been restored here */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {images.length > 0 ? (
-          images.map((src, index) => {
-            const className =
-              index === 0
-                ? "md:row-span-2 md:col-span-2 min-h-[400px]"
-                : "min-h-[192px]";
-
+        {images.length > 0 ?
+          (images.slice(0, 3).map((src, index) => {
+            const isThirdImage = index === 2;
+            const hasMoreImages = images.length > 3;
+            const showOverlay = isThirdImage && hasMoreImages;
+            const className = index === 0 ? "md:row-span-2 md:col-span-2 min-h-[400px]" : "min-h-[192px]";
+            
             return (
               <div
                 key={src}
-                className={`relative rounded-md overflow-hidden bg-gray-800/50 ${className} 
-                           group transition-transform duration-300 ease-in-out hover:scale-95 cursor-pointer`}
+                className={`relative rounded-md overflow-hidden bg-zinc-200 dark:bg-zinc-800/50 ${className} transition-transform duration-300 ease-in-out hover:scale-95 cursor-pointer`}
                 onClick={() => handleImageClick(index)}
               >
                 <Image
                   src={src}
                   alt={`${projectName} image ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className={`object-cover transition-opacity duration-300 ${showOverlay ? 'opacity-50' : ''}`}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
+                {showOverlay && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300">
+                    <p className="text-white text-lg font-semibold">See more images</p>
+                  </div>
+                )}
               </div>
             );
-          })
-        ) : (
-          <div className="md:col-span-2 flex items-center justify-center bg-gray-800/50 rounded-md min-h-[400px]">
-            <p className="text-gray-500">
+          }))
+         : 
+        (
+          <div className="md:col-span-2 flex items-center justify-center bg-zinc-200 dark:bg-zinc-800/50 rounded-md min-h-[400px]">
+            <p className="text-zinc-500">
               No images available for this project.
             </p>
           </div>

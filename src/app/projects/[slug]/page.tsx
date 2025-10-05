@@ -10,6 +10,8 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import ProjectGallery from '@/components/ProjectGallery'
 import ProjectDocuments from '@/components/ProjectDocuments'
+import PageWrapper from '@/components/PageWrapper'
+import Underline from '@/components/Underline'
 
 type ProjectPageProps = {
   params: Promise<{
@@ -45,42 +47,47 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <section>
-      {/* Project Header */}
-      <div className="mb-8">
-        <h1 className="text-5xl font-extrabold uppercase tracking-tight mb-4">
-          {project.name}
-        </h1>
-        {/* UPDATED: Text color is now theme-aware */}
-        <h2 className="text-2xl font-semibold text-gray-600 dark:text-gray-300">
-          {project.module}
-        </h2>
-        {/* UPDATED: Text color is now theme-aware */}
-        <p className="text-lg text-gray-500 dark:text-gray-400 mt-1">{project.date}</p>
-      </div>
-
-      {/* Skills Section */}
-      <div className="flex flex-col gap-4 mb-12">
-        {/* UPDATED: Text color is now theme-aware */}
-        <h3 className="text-2xl font-semibold text-gray-600 dark:text-gray-300">SKILLS</h3>
-        <div className="flex flex-wrap items-center gap-2">
-          {project.skills.map((skill) => (
-            <Badge key={skill} variant="secondary">
-              {skill}
-            </Badge>
-          ))}
+    <PageWrapper>
+      <section>
+        {/* Project Header */}
+        <div className="mb-12">
+          <div className="inline-block mb-4">
+            <h1 className="text-5xl font-extrabold uppercase tracking-tight mb-2">
+              {project.name}
+            </h1>
+            <Underline />
+          </div>
+          {/* UPDATED: Text color is now theme-aware */}
+          <h2 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">
+            {project.module}
+          </h2>
+          {/* UPDATED: Text color is now theme-aware */}
+          <p className="text-lg text-zinc-500 dark:text-zinc-400 mt-1">{project.date}</p>
         </div>
-      </div>
 
-      {/* Project Description */}
-      {/* UPDATED: Text color is now theme-aware */}
-      <p className="max-w-3xl text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
-        {project.description}
-      </p>
+        {/* Skills Section */}
+        <div className="flex flex-col gap-4 mb-12">
+          {/* UPDATED: Text color is now theme-aware */}
+          <h3 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">SKILLS</h3>
+          <div className="flex flex-wrap items-center gap-2">
+            {project.skills.map((skill) => (
+              <Badge key={skill} variant="secondary">
+                {skill}
+              </Badge>
+            ))}
+          </div>
+        </div>
 
-      <ProjectGallery images={projectImages} projectName={project.name} />
+        {/* Project Description */}
+        {/* UPDATED: Text color is now theme-aware */}
+        <p className="max-w-3xl text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8">
+          {project.description}
+        </p>
 
-      <ProjectDocuments documents={project.documents} />
-    </section>
+        <ProjectGallery images={projectImages} projectName={project.name} />
+
+        <ProjectDocuments documents={project.documents} />
+      </section>
+    </PageWrapper>
   )
 }
