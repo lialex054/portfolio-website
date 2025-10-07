@@ -13,6 +13,7 @@ import ImageOverlay from "./ImageOverlay";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import PageWrapper from "./PageWrapper";
+import ProjectDocuments from "./ProjectDocuments";
 import { Button } from "./ui/button";
 
 interface HomePageClientProps {
@@ -78,8 +79,8 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
               <Image
                 src="/photo.jpg"
                 alt="A profile photo for the portfolio"
-                width={320}
-                height={384}
+                width={300}
+                height={300}
                 className="rounded-md object-cover"
                 priority
               />
@@ -109,6 +110,7 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
                     {mostRecentProject.name}
                   </h3>
                   <p className="text-zinc-500 dark:text-zinc-400">{mostRecentProject.description}</p>
+                  <ProjectDocuments documents={mostRecentProject.documents} />
                 </div>
               </div>
               <div className="grid grid-cols-3 grid-rows-2 gap-4 h-80 md:h-96">
