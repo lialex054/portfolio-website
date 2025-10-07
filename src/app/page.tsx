@@ -23,7 +23,7 @@ export default async function Home() {
     recentProjectImages = imageFilenames.map(
       (file) => `/images/${mostRecentProject.slug}/${file}`
     );
-  } catch (error) {
+  } catch {
     console.warn(
       `Warning: No image directory found for slug "${mostRecentProject.slug}" for the home page.`
     );

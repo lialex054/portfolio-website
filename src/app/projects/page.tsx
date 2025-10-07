@@ -17,7 +17,7 @@ async function getFirstImageForProject(slug: string): Promise<string | null> {
       .sort()[0];
     
     return firstImage ? `/images/${slug}/${firstImage}` : null;
-  } catch (error) {
+  } catch {
     return null;
   }
 }

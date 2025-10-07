@@ -14,7 +14,6 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import PageWrapper from "./PageWrapper";
 import ProjectDocuments from "./ProjectDocuments";
-import { Button } from "./ui/button";
 
 interface HomePageClientProps {
   mostRecentProject: Project;
@@ -61,7 +60,7 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
           <FadeIn>
             <div className="relative z-20">
               <div className="inline-block mb-4">
-                <h1 className="text-5xl font-extrabold mb-2">Alex's Portfolio</h1>
+                <h1 className="text-5xl font-extrabold mb-2">Alex&apos;s Portfolio</h1>
                 <Underline />
               </div>
               <p className="max-w-xl text-zinc-600 dark:text-zinc-300 mb-6 block">
