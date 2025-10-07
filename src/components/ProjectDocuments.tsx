@@ -22,7 +22,7 @@ export default function ProjectDocuments({ documents }: ProjectDocumentsProps) {
   return (
     <div className="flex flex-col gap-4 mt-12">
       {/* UPDATED: Heading color is now theme-aware */}
-      <h2 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">RELATED DOCUMENTS</h2>
+      <h2 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">RELATED LINKS</h2>
       <div className="flex flex-wrap items-center gap-3">
         {documents.map((doc) => (
           <Button key={doc.url} variant="secondary" asChild>

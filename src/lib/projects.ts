@@ -148,4 +148,18 @@ export const projects: Project[] = [
       },
     ],
   },
+  {
+    slug: "kaikaku-fusion",
+    name: "KAIKAKU Fusion Trailer",
+    module: "Freelance Project",
+    date: "May 2025 - June 2025",
+    description:
+      "For this project, I was hired by KAIKAKU, a startup focused on revolutionizing the restaraunt industry. My role was to create a captivating trailer that effectively communicated their new flagship product \"Fusion\". I utilised my skills in video editing, specifically the Adobe Suite, Blender, and storyboarding to produce a high-quality trailer that resonated with their target audience. The project involved close collaboration with the KAIKAKU team to ensure the final product aligned with their brand identity and goals. The trailer was well-received, helping to boost KAIKAKU's visibility and engagement in the tech community.",
+    skills: ["Blender", "Adobe Premiere Pro"],
+    documents: [
+      {
+        label: "Video Link on X",
+        url: "https://x.com/joseflchen/status/1951287497880670328"
+  }],
+  },
 ];

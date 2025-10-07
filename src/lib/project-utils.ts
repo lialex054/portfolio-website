@@ -1,4 +1,4 @@
-// FILE: lib/project-utils.ts
+// FILE: src/lib/project-utils.ts
 
 import { projects, type Project } from './projects';
 
@@ -43,4 +43,37 @@ export function getSortedProjects(): Project[] {
     return dateB.getTime() - dateA.getTime();
   });
   return sorted;
+}
+
+// NEW: Function to assign grid sizes to projects
+export type ProjectGridItem = Project & {
+  size: '2x2' | '1x2' | '2x1' | '1x1';
+};
+
+/**
+ * Assigns sizes to projects to fit them into a perfect rectangular grid.
+ * The first 7 projects have specific sizes to create a 3x4 grid.
+ * After that, all projects are 1x1 to continue the pattern.
+ * This overrides the "size by description" logic to guarantee a clean layout.
+ */
+export function getProjectsWithSizes(): ProjectGridItem[] {
+  const sortedProjects = getSortedProjects();
+
+  const sizeSequence: ProjectGridItem['size'][] = [
+    '2x2', // Project 1
+    '1x2', // Project 2
+    '2x1', // Project 3
+    '1x1', // Project 4
+    '1x1', // Project 5
+    '2x1', // Project 6
+    '1x2', // Project 7
+    '1x1', // Project 8
+    '1x1', // Project 9
+    '2x1', // Project 10
+  ];
+
+  return sortedProjects.map((project, index) => {
+    const size = sizeSequence[index] || '1x1'; // Default to 1x1 for projects beyond the initial sequence
+    return { ...project, size };
+  });
 }

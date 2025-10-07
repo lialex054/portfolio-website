@@ -38,9 +38,11 @@ const NavContent = ({ onLinkClick }: { onLinkClick?: () => void }) => {
       className="relative w-full p-12 text-left"
       onMouseLeave={() => setHoveredIndex(null)}
     >
-      <h2 className="mb-2 text-lg font-semibold text-zinc-500 dark:text-zinc-400">
-        Projects
-      </h2>
+      <Link href="/projects" onClick={onLinkClick}>
+        <h2 className="mb-2 text-lg font-semibold text-zinc-500 dark:text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white">
+          Projects
+        </h2>
+      </Link>
 
       <LayoutGroup id="sidebar">
         <ul className="relative flex flex-col gap-4">

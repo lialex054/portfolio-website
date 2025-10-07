@@ -60,19 +60,20 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
           <FadeIn>
             <div className="relative z-20">
               <div className="inline-block mb-4">
-                <h1 className="text-5xl font-extrabold mb-2">My Portfolio</h1>
+                <h1 className="text-5xl font-extrabold mb-2">Alex's Portfolio</h1>
                 <Underline />
               </div>
               <p className="max-w-xl text-zinc-600 dark:text-zinc-300 mb-6 block">
-                Hi, I’m Alex — a design engineering student passionate about building
-                products that merge technical craft with user-focused design.
+                Hi, I’m Alex — a design engineering student and aspring product manager. 
+                I enjoy the challenge of delivering user-centred solutions to complex real world problems
+                through relentless data-driven user research and iterative design.
               </p>
 
-              <Link href={`/projects/${mostRecentProject.slug}`} className="block mb-4">
+                <Link href="/projects" className="block mb-4">
                 <h3 className="text-2xl font-outfit font-semibold text-orange-600 hover:text-orange-700 transition-colors">
                   View Projects &gt;
                 </h3>
-              </Link>
+                </Link>
               
               <Image
                 src="/photo.jpg"
@@ -86,7 +87,7 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
           </FadeIn>
 
           <motion.button
-            className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer"
+            className="fixed bottom-10 left-1/2 -translate-x-1/2 cursor-pointer z-20"
             style={{ opacity }}
             onClick={handleScrollDown}
             aria-label="Scroll to next section"
@@ -97,16 +98,18 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
 
         <section ref={projectSectionRef} className="py-20">
           <FadeIn>
-            <div className="max-w-3xl">
-              <div className="flex flex-col mb-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 items-center">
+              <div className="mb-12 lg:mb-0">
                 {/* UPDATED: Text colors now adapt to the theme */}
                 <h2 className="text-xl text-zinc-600 dark:text-zinc-300 mb-2">
                   Most recent project:
                 </h2>
-                <h3 className="text-4xl font-extrabold uppercase mb-4">
-                  {mostRecentProject.name}
-                </h3>
-                <p className="text-zinc-500 dark:text-zinc-400">{mostRecentProject.description}</p>
+                <div className="max-w-xl">
+                  <h3 className="text-4xl font-extrabold uppercase mb-4">
+                    {mostRecentProject.name}
+                  </h3>
+                  <p className="text-zinc-500 dark:text-zinc-400">{mostRecentProject.description}</p>
+                </div>
               </div>
               <div className="grid grid-cols-3 grid-rows-2 gap-4 h-80 md:h-96">
                 {recentProjectImages.length > 0 ? (
@@ -127,10 +130,10 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
                       </div>
                     )}
                     {recentProjectImages[2] && (
-                      <div className="relative col-start-3 row-start-2 row-span-1 rounded-md overflow-hidden bg-zinc-200 dark:bg-zinc-800/50 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95" onClick={() => handleImageClick(2)}>
-                        <Image src={recentProjectImages[2]} alt={`${mostRecentProject.name} image 3`} fill className={`object-cover transition-opacity duration-300 ${recentProjectImages.length > 3 ? 'opacity-50' : ''}`} sizes="33vw" />
+                      <div className="group relative col-start-3 row-start-2 row-span-1 rounded-md overflow-hidden bg-zinc-200 dark:bg-zinc-800/50 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95" onClick={() => handleImageClick(2)}>
+                        <Image src={recentProjectImages[2]} alt={`${mostRecentProject.name} image 3`} fill className={`object-cover transition-opacity duration-300 ${recentProjectImages.length > 3 ? 'group-hover:opacity-50' : ''}`} sizes="33vw" />
                         {recentProjectImages.length > 3 && (
-                          <div className="absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300">
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                             <p className="text-white text-lg font-semibold">See more images</p>
                           </div>
                         )}

@@ -43,18 +43,18 @@ export default function ProjectGallery({ images, projectName }: { images: string
             return (
               <div
                 key={src}
-                className={`relative rounded-md overflow-hidden bg-zinc-200 dark:bg-zinc-800/50 ${className} transition-transform duration-300 ease-in-out hover:scale-95 cursor-pointer`}
+                className={`group relative rounded-md overflow-hidden bg-zinc-200 dark:bg-zinc-800/50 ${className} transition-transform duration-300 ease-in-out hover:scale-95 cursor-pointer`}
                 onClick={() => handleImageClick(index)}
               >
                 <Image
                   src={src}
                   alt={`${projectName} image ${index + 1}`}
                   fill
-                  className={`object-cover transition-opacity duration-300 ${showOverlay ? 'opacity-50' : ''}`}
+                  className={`object-cover transition-opacity duration-300 ${showOverlay ? 'group-hover:opacity-50' : ''}`}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {showOverlay && (
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300">
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <p className="text-white text-lg font-semibold">See more images</p>
                   </div>
                 )}
