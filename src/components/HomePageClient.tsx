@@ -1,3 +1,5 @@
+// FILE: src/components/HomePageClient.tsx
+
 "use client";
 
 import { useRef, useState } from "react";
@@ -14,6 +16,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { useScrollLock } from "@/hooks/use-scroll-lock";
 import PageWrapper from "./PageWrapper";
 import ProjectDocuments from "./ProjectDocuments";
+import { Button } from "./ui/button";
 
 interface HomePageClientProps {
   mostRecentProject: Project;
@@ -48,8 +51,7 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
     <PageWrapper>
       <div className="relative">
         <section className="relative min-h-screen flex items-center">
-          <div className="absolute inset-0 flex items-center justify-end pointer-events-none pr-10">
-            {/* 3. Conditionally render the GlassesFollower only on desktop */}
+          <div className="absolute inset-0 flex items-center justify-end pointer-events-none pr-32">
             {isDesktop && (
               <div className="pointer-events-auto">
                 <GlassesFollower />
@@ -59,30 +61,33 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
 
           <FadeIn>
             <div className="relative z-20">
+              {/* UPDATED: Removed fixed size props and added responsive classes */}
+              <Image
+                src="/photo.png"
+                alt="A profile photo for the portfolio"
+                width={300} // Keep width/height for Next.js optimization, but CSS will override
+                height={300}
+                className="rounded-full object-cover object-top mb-6 
+                           w-40 h-40 md:w-60 md:h-60 lg:w-[300px] lg:h-[300px]"
+                priority
+              />
               <div className="inline-block mb-4">
                 <h1 className="text-5xl font-extrabold mb-2">Alex&apos;s Portfolio</h1>
                 <Underline />
               </div>
+              <h2 className="text-2xl font extrabold uppercase tracking-tight mb-4">Imperial College London | Ex-Revolut</h2>
               <p className="max-w-xl text-zinc-600 dark:text-zinc-300 mb-6 block">
-                Hi, I’m Alex — a design engineering student and aspring product manager. 
-                I enjoy the challenge of delivering user-centred solutions to complex real world problems
-                through relentless data-driven user research and iterative design.
+                Hi, I’m Alex — an aspiring Product Manager and Design Engineer.
               </p>
 
-                <Link href="/projects" className="block mb-4">
-                <h3 className="text-2xl font-outfit font-semibold text-orange-600 hover:text-orange-700 transition-colors">
-                  View Projects &gt;
-                </h3>
+              <Button asChild className="mb-4 bg-orange-500 hover:bg-orange-600 dark:bg-orange-600 dark:hover:bg-orange-700 text-white px-8 py-8">
+                <Link href="/projects">
+                  <h3 className="text-2xl font-outfit font-semibold">
+                    View Projects &gt;
+                  </h3>
                 </Link>
+              </Button>
               
-              <Image
-                src="/photo.jpg"
-                alt="A profile photo for the portfolio"
-                width={300}
-                height={300}
-                className="rounded-md object-cover"
-                priority
-              />
             </div>
           </FadeIn>
 
@@ -100,7 +105,6 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
           <FadeIn>
             <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-12 items-center">
               <div className="mb-12 lg:mb-0">
-                {/* UPDATED: Text colors now adapt to the theme */}
                 <h2 className="text-xl text-zinc-600 dark:text-zinc-300 mb-2">
                   Most recent project:
                 </h2>
@@ -115,7 +119,6 @@ export default function HomePageClient({ mostRecentProject, recentProjectImages 
               <div className="grid grid-cols-3 grid-rows-2 gap-4 h-80 md:h-96">
                 {recentProjectImages.length > 0 ? (
                   <>
-                    {/* UPDATED: Placeholder backgrounds now adapt to the theme */}
                     <div
                       className="relative col-span-2 row-span-2 rounded-md overflow-hidden bg-zinc-200 dark:bg-zinc-800/50 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-95"
                       onClick={() => handleImageClick(0)}

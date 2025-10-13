@@ -36,8 +36,8 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
   };
 
   return (
-    // UPDATED: Added md:grid-flow-row-dense to make the grid packing algorithm smarter
-    <div className="grid grid-cols-1 md:grid-cols-3 md:grid-flow-row-dense auto-rows-[350px] gap-4">
+    // UPDATED: Changed auto-rows from 350px to 280px to make the grid smaller.
+    <div className="grid grid-cols-1 md:grid-cols-3 md:grid-flow-row-dense auto-rows-[200px] gap-4">
       {projects.map((project, index) => (
         <motion.div
           key={project.slug}
@@ -47,11 +47,9 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
           custom={index}
           variants={gridItemVariants}
           initial="hidden"
-          // UPDATED: Changed back to animate="visible" to fix staggering
-          // and removed the conflicting transition prop.
           animate="visible"
         >
-          <Link href={`/projects/${project.slug}`} className="block w-full h-full">
+          <Link href={`#${project.slug}`} className="block w-full h-full">
             {project.firstImage && (
               <Image
                 src={project.firstImage}

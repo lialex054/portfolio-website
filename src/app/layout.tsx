@@ -45,7 +45,7 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <NavBar />
-            <main className="pt-20 px-4 sm:px-6 md:px-12 lg:px-24">{children}</main>
+            <main className="pt-12 px-4 sm:px-6 md:px-12 lg:px-24">{children}</main>
           </SidebarProvider>
         </ThemeProvider>
       </body>

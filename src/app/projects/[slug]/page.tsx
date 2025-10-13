@@ -48,45 +48,54 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <PageWrapper>
-      <section>
-        {/* Project Header */}
-        <div className="mb-12">
-          <div className="inline-block mb-4">
-            <h1 className="text-5xl font-extrabold uppercase tracking-tight mb-2">
-              {project.name}
-            </h1>
-            <Underline />
+      <section className="py-12">
+        <div className="grid grid-cols-1 xl:grid-cols-2 xl:gap-12 items-start">
+          {/* Left Column: Project Details */}
+          <div className="xl:sticky xl:top-24">
+            {/* Project Header */}
+            <div className="mb-12">
+              <div className="inline-block mb-4">
+                <h1 className="text-5xl font-extrabold uppercase tracking-tight mb-2">
+                  {project.name}
+                </h1>
+                <Underline />
+              </div>
+              {/* UPDATED: Text color is now theme-aware */}
+              <h2 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">
+                {project.module}
+              </h2>
+              {/* UPDATED: Text color is now theme-aware */}
+              <p className="text-lg text-zinc-500 dark:text-zinc-400 mt-1">{project.date}</p>
+            </div>
+
+            {/* Skills Section */}
+            <div className="flex flex-col gap-4 mb-12">
+              {/* UPDATED: Text color is now theme-aware */}
+              <h3 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">SKILLS</h3>
+              <div className="flex flex-wrap items-center gap-2">
+                {project.skills.map((skill) => (
+                  <Badge key={skill} variant="secondary">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Project Description */}
+            <p className="max-w-3xl text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8">
+              {project.description}
+            </p>
+            {/* Gallery for mobile/tablet view, hidden on xl screens */}
+            <div className="xl:hidden mb-12">
+              <ProjectGallery images={projectImages} projectName={project.name} />
+            </div>
+            <ProjectDocuments documents={project.documents} />
           </div>
-          {/* UPDATED: Text color is now theme-aware */}
-          <h2 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">
-            {project.module}
-          </h2>
-          {/* UPDATED: Text color is now theme-aware */}
-          <p className="text-lg text-zinc-500 dark:text-zinc-400 mt-1">{project.date}</p>
-        </div>
-
-        {/* Skills Section */}
-        <div className="flex flex-col gap-4 mb-12">
-          {/* UPDATED: Text color is now theme-aware */}
-          <h3 className="text-2xl font-semibold text-zinc-600 dark:text-zinc-300">SKILLS</h3>
-          <div className="flex flex-wrap items-center gap-2">
-            {project.skills.map((skill) => (
-              <Badge key={skill} variant="secondary">
-                {skill}
-              </Badge>
-            ))}
+          {/* Gallery for desktop view, hidden on smaller screens */}
+          <div className="hidden xl:block">
+            <ProjectGallery images={projectImages} projectName={project.name} />
           </div>
         </div>
-
-        {/* Project Description */}
-        {/* UPDATED: Text color is now theme-aware */}
-        <p className="max-w-3xl text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8">
-          {project.description}
-        </p>
-
-        <ProjectGallery images={projectImages} projectName={project.name} />
-
-        <ProjectDocuments documents={project.documents} />
       </section>
     </PageWrapper>
   )

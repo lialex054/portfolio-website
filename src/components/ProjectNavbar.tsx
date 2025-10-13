@@ -1,9 +1,12 @@
+// FILE: src/components/ProjectNavbar.tsx
+
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Linkedin, Mail, Menu } from "lucide-react";
+// UPDATED: Import the new FileText icon
+import { Linkedin, Mail, Menu, FileText } from "lucide-react";
 import ThemeToggleButton from "./ThemeToggleButton";
 import { useSidebar } from "@/context/SidebarContext";
 
@@ -35,11 +38,10 @@ export default function ProjectNavbar() {
             />
           </Link>
 
-          {/* UPDATED: The Hamburger Menu Button is now here */}
           {isProjectPage && (
             <button
               onClick={toggleSidebar}
-              className="p-2 rounded-full lg:hidden" // Only visible on screens smaller than 'lg'
+              className="p-2 rounded-full lg:hidden"
               aria-label="Toggle navigation menu"
             >
               <Menu className="w-6 h-6" />
@@ -50,6 +52,18 @@ export default function ProjectNavbar() {
         {/* Right side of the Navbar */}
         <div className="flex items-center gap-4">
           <ThemeToggleButton />
+          
+          {/* NEW: CV Button */}
+          <a 
+            href="https://www.dropbox.com/scl/fi/51puv4bvnqcn5n0gcg3pj/alexcv_2026_PM.pdf?rlkey=3qjapbki20a4p5lazg61ovtg0&st=bgkzkw50&dl=0" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="View my CV" 
+            className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <FileText className="w-6 h-6 text-zinc-500 dark:text-zinc-300" />
+          </a>
+
           <a href="https://www.linkedin.com/in/alexli429" target="_blank" rel="noopener noreferrer" aria-label="View my LinkedIn profile" className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <Linkedin className="w-6 h-6 text-zinc-500 dark:text-zinc-300" />
           </a>

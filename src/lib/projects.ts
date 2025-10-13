@@ -1,3 +1,5 @@
+// FILE: src/lib/projects.ts
+
 export interface Project {
   slug: string;
   name: string;
@@ -15,7 +17,7 @@ export const projects: Project[] = [
     module: "Futures Design Engineering (Speculative)",
     date: "October 2024 - March 2025",
     description:
-      "HIVE-FU was created to address the significant barrier of safeguarding astronaut health during long-duration missions to Mars. Through extensive academic research, market research, and interviews with experts and stakeholders, the team identified key challenges like communication delays with Earth and limited on-board medical expertise. This led to the development of a fully-integrated, compact ultrasound system capable of diagnosing, planning, and treating medical emergencies. The final design, a robotic arm with a concave probe head, was brought to life using CAD and Blender, demonstrating a feasible and innovative solution for enabling crew autonomy.",
+      "HIVE-FU addresses the critical challenge of safeguarding astronaut health during long-duration Mars missions where communication delays make Earth-based support impossible. Through extensive research, we identified the need for autonomous medical capabilities onboard. We developed a fully-integrated, compact robotic ultrasound system for diagnosis, planning, and treatment. The final design was brought to life using CAD and Blender, demonstrating a feasible solution for enabling crew autonomy in medical emergencies.",
     skills: ["Literature Review", "User Research Methods", "CAD", "OnShape", "Blender", "Presentation Skills", "STEEP Framework", "Speculative Engineering"],
     documents: [
       {
@@ -30,7 +32,7 @@ export const projects: Project[] = [
     module: "Innovation and Enterprise Module",
     date: "October 2024 - December 2024",
     description:
-      "Cyclogic is a cyclist navigation app designed to address the unpredictable nature of cycling and the lack of a dedicated tool for riders. We found a significant gap in the market for a specialized app through extensive user research, including interviews, surveys, and competitor analysis. This research revealed that cyclists often fear road conditions and inattentive drivers. To tackle this, we built a functional prototype in Figma with an upgraded UI/UX, aiming to provide a customer-driven database of routes and real-time updates. User testing showed overwhelmingly positive feedback, confirming the prototype was a success in providing crucial, digestible information for cyclists. We learned that focusing on cyclist-specific needs and concerns can lead to a highly impactful product.",
+      "Cyclogic is a cyclist navigation app designed to address the market gap for a tool tailored to the unpredictable nature of cycling. Extensive user research revealed that cyclists' primary concerns are poor road conditions and inattentive drivers. To tackle this, we built a functional prototype in Figma with an intuitive UI/UX, providing a customer-driven database of routes and real-time updates. Overwhelmingly positive feedback from user testing confirmed the prototype was a success in providing crucial, digestible information for cyclists.",
     skills: ["Figma", "User Research", "Prototyping", "UI/UX Design", "Data Analysis"],
     documents: [
       {
@@ -45,7 +47,7 @@ export const projects: Project[] = [
     module: "Industrial Design Engineering",
     date: "January 2024 - June 2024",
     description:
-      "The Google Companion was developed to address the challenge young adults with ADHD face in maintaining focus and transitioning out of hyperfocus. Through extensive user research, including interviews with users and industry experts, we identified key pain points related to productivity. We built a subtle desktop focus companion that guides users' productivity journeys, creating a personalized experience. The project was highly impactful, with user testing revealing a 60% increase in study time. The team learned the importance of continuous iteration, creating over 20 component iterations to perfect the user experience and ensure the product was highly usable.",
+      "The Google Companion was developed to help young adults with ADHD maintain focus and smoothly transition out of hyperfocus states. Through user and expert interviews, we identified key productivity pain points and built a subtle desktop companion to guide users' focus journeys. This personalized experience proved highly impactful, with user testing revealing a 60% increase in study time. The project taught us the importance of continuous iteration, as we created over 20 component variations to perfect the user experience.",
     skills: ["Figma", "UI/UX Design", "User Research", "Prototyping", "Graphic Design", "Video Editing", "User Testing"],
     documents: [
       {
@@ -64,7 +66,7 @@ export const projects: Project[] = [
     module: "Physical Computing",
     date: "October 2023 - December 2023",
     description:
-      "The project aimed to create a real-time musical instrument that translates physical movement into sound, guided by the theme \"more than meets the eye.\" We designed and built a large, expressive musical instrument using a Hoberman Sphere, with additional controllers for more features. The sphere and controllers were manufactured using laser cutting and 3D printing. A Bela board was programmed using C++ and PureData to map sensor inputs from the physical sphere to control musical parameters like volume and pitch, resulting in a unique, tangible musical experience.",
+      "Guided by the theme \"more than meets the eye,\" this project aimed to create a real-time musical instrument translating physical movement into sound. We designed and built a large, expressive instrument using a Hoberman Sphere, manufactured with laser cutting and 3D printing. A Bela board was programmed using C++ and PureData to map the sphere's sensor inputs to musical parameters like volume and pitch. The result was a unique and tangible musical experience.",
     skills: ["Manufacturing", "Prototyping", "Electronics & Programming", "Music & Audio", "CAD", "Arduino Style C++", "PureData"],
     documents: [
       {
@@ -79,7 +81,7 @@ export const projects: Project[] = [
     module: "Human-Centred Design Engineering",
     date: "January 2022 - June 2022",
     description:
-      "The project was initiated to address the significant problem of medical packaging for older adults and those suffering from arthritis, a population that includes over 10 million people in the UK. A survey of 160 respondents confirmed that individuals aged 41-71+ experience the most pain from current packaging designs. The primary user needs identified were autonomy in opening their own packaging, recyclability, and not having to rely on external organizations. The design process was highly user-oriented, with continuous feedback from the target demographic informing all decisions. To create the best possible solution, the team used an iterative design approach, creating over 20 different prototypes. The project demonstrated its impact through successful prototype testing, where users expressed high satisfaction and a sense of improved autonomy. The team also conducted simulated tests with younger people to further validate the design.",
+      "This project addressed the significant challenge of medical packaging for older adults and those with arthritis. User research confirmed that this demographic struggled with autonomy and existing packaging designs. We adopted a highly user-oriented, iterative design approach, creating over 20 prototypes based on continuous feedback from the target users. Successful prototype testing demonstrated high user satisfaction and a renewed sense of autonomy, validating our human-centered design process.",
     skills: ["Manufacturing", "Prototyping", "User Research ", "User Interviews", "Usability Testing", "Presentation"],
     documents: [
       {
@@ -94,7 +96,7 @@ export const projects: Project[] = [
     module: "Computing 2: Web Dev",
     date: "March 2022 - June 2022",
     description:
-      "For my Computing 2 project, we were tasked with creating a turn based game. Basing it off the hit NY Times game Wordle, I created Dinosaurdle! The premise of the game is to continue finding the right 5 letter word before the \"Dinosaur\" catches up with you. The development of this game introduced web development to me, teaching me the basics of JavaScript, HTML and CSS. It also taught me the importance of APIs, and how it communicates between the client and the server. You can play it using the button below the image gallery!",
+      "For a university project, I created Dinosaurdle, a turn-based game inspired by the hit NY Times game, Wordle. The premise is to guess the correct 5-letter word before a \"dinosaur\" catches up to you. This project served as my introduction to web development, teaching me the fundamentals of JavaScript, HTML, and CSS. It also provided practical experience with APIs and client-server communication.",
     skills: ["JavaScript", "HTML", "CSS ", "UI/UX Design", "WCAG Guidelines", "APIs", "Software Development"],
     documents: [
       {
@@ -109,7 +111,7 @@ export const projects: Project[] = [
     module: "Sustainable Design Engineering",
     date: "October 2023 - December 2023",
     description:
-      "The BloomBums project was created to tackle the significant environmental problem of disposable diaper waste, which contributes over 3 billion nappies to landfills annually. By defining the problem through a STEEP framework and conceptualizing a complete closed-loop system using a Circular Business Ecosystem Model Canvas, the team developed a solution designed to eliminate nearly 400,000 tonnes of waste in the UK alone. The final product, a 100% recyclable diaper PSS (Product-Service System), was visualized through CAD software like Blender and Fusion 360, demonstrating a holistic and sustainable approach to a major consumer goods problem.",
+      "The BloomBums project tackled the massive environmental problem of disposable diaper waste in the UK. Using a STEEP framework, we conceptualized a closed-loop system to eliminate nearly 400,000 tonnes of annual waste. We developed a 100% recyclable diaper Product-Service System (PSS) and visualized it using CAD software like Blender and Fusion 360. This project demonstrated a holistic and sustainable approach to a major consumer goods problem.",
     skills: ["Sustainability", "CAD", "Blender ", "Fusion360", "STEEP Framework", "User Research", "Market Analysis"],
     documents: [
       {
@@ -124,7 +126,7 @@ export const projects: Project[] = [
     module: "Finite Element Analysis",
     date: "January 2024 - March 2024",
     description:
-      "Conducting finite element analysis (FEA) on a hip implant, redesigning it to match a design criteria of certain resonant frequencies and load cycles.",
+      "This project involved conducting a complete finite element analysis (FEA) on a hip implant. The primary goal was to redesign the implant to meet a specific design criteria of resonant frequencies and load cycles. Using tools like Solidworks and Ansys, the implant was analyzed and modified to improve its structural performance. This provided practical experience in applying engineering principles and academic research to a real-world biomedical problem.",
     skills: ["Finite Element Analysis", "CAD", "Solidworks ", "Fusion360", "Blender", "Ansys", "Engineering Principles", "Academic Research"],
     documents: [
       {
@@ -139,7 +141,7 @@ export const projects: Project[] = [
     module: "Computational Fluid Dynamics",
     date: "January 2024 - March 2024",
     description:
-      "Using Solidworks, I remodeled the 1958 Chevrolet Corvette to perform a CFD simulation. After using both computational and hand-calculations on the car, improvements were made and remodeled to reduce drag and increase down force. The second model had reduced the drag from 0.51 to 0.24.",
+      "Using Solidworks, I remodeled the 1958 Chevrolet Corvette to perform a detailed computational fluid dynamics (CFD) simulation. After establishing baseline performance with both computational and hand-calculations, improvements were made to the car's geometry. The redesigned model was then re-analyzed to validate the changes. The final iteration successfully reduced the car's drag coefficient from 0.51 to an impressive 0.24.",
     skills: ["Computational Fluid Dynamics", "CAD", "Solidworks ", "Fusion360", "Blender", "Engineering Principles", "Academic Research"],
     documents: [
       {
@@ -154,7 +156,7 @@ export const projects: Project[] = [
     module: "Freelance Project",
     date: "May 2025 - June 2025",
     description:
-      "For this project, I was hired by KAIKAKU, a startup focused on revolutionizing the restaraunt industry. My role was to create a captivating trailer that effectively communicated their new flagship product \"Fusion\". I utilised my skills in video editing, specifically the Adobe Suite, Blender, and storyboarding to produce a high-quality trailer that resonated with their target audience. The project involved close collaboration with the KAIKAKU team to ensure the final product aligned with their brand identity and goals. The trailer was well-received, helping to boost KAIKAKU's visibility and engagement in the tech community.",
+      "For this freelance project, I was hired by the startup KAIKAKU to create a captivating trailer for their new flagship product, \"Fusion.\" My role involved storyboarding, video editing, and creating 3D assets to effectively communicate their vision. I utilized the Adobe Suite and Blender, collaborating closely with their team to ensure the final product aligned with their brand identity. The resulting trailer was well-received, helping to boost KAIKAKU's visibility and engagement.",
     skills: ["Blender", "Adobe Premiere Pro"],
     documents: [
       {
