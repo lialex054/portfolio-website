@@ -49,7 +49,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
           initial="hidden"
           animate="visible"
         >
-          <Link href={`#${project.slug}`} className="block w-full h-full">
+          <a href={`projects/${project.slug}`} className="block w-full h-full">
             {project.firstImage && (
               <Image
                 src={project.firstImage}
@@ -65,7 +65,7 @@ export default function ProjectGrid({ projects }: ProjectGridProps) {
                 {project.name}
               </h3>
             </div>
-          </Link>
+          </a>
         </motion.div>
       ))}
     </div>
