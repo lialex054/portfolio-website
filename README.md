@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alex Li — portfolio
 
-## Getting Started
-
-First, run the development server:
+Next.js 15 · React 19 · Tailwind CSS v4 · MDX case studies.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build (also type-checks and validates content)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Path | What |
+| --- | --- |
+| `content/projects/<slug>/index.mdx` | One case study: frontmatter drives the home tile, the body is the page |
+| `content/media.json` | Image sizes, written by the image script — don't edit by hand |
+| `public/work/<slug>/` | Compressed project images (WebP) |
+| `src/lib/site.ts` | Name, links, About text, experience, archive, "coming soon" list |
+| `src/app/globals.css` | Design tokens (colours for dark and light) |
+| `src/components/glasses/` | The glasses and the gaze engine that drives them |
+| `src/components/home/` | Bento grid, tiles, archive, About |
+| `src/components/mdx/` | Components you can use inside case studies |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Adding a project
 
-## Learn More
+1. Compress its images (originals can live anywhere outside the repo):
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   node scripts/optimize-images.mjs ~/Desktop/daybreak daybreak cover=hero.png flow=flows.png
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   This writes `public/work/daybreak/cover.webp` etc. and records their sizes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. Create `content/projects/daybreak/index.mdx`:
 
-## Deploy on Vercel
+   ```mdx
+   ---
+   title: Daybreak
+   summary: One sentence on the problem and what you made.
+   context: Where and why it happened
+   role: Your role            # optional
+   team: 4 people             # optional
+   start: 2026-01
+   end: 2026-04
+   disciplines: [product, ux] # product | ux | build | story — drives the filters
+   tags: Product · UX         # shown on the tile
+   tools: [Figma, SQL]
+   stat: The headline result
+   cover: /work/daybreak/cover.webp
+   coverAlt: What the cover shows
+   order: 1                   # position under "All"; renumber the others
+   links:
+     - label: Report
+       url: https://…
+   ---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ## The problem
+   …
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Remove its name from `upcoming` in `src/lib/site.ts`.
+
+The build fails with a clear message if frontmatter is missing or an image hasn't been run through the script.
+
+## Case study components
+
+| Component | Example |
+| --- | --- |
+| `Figure` | `<Figure src="/work/x/flow.webp" alt="…" caption="…" />` |
+| `Gallery` | `<Gallery images={[{ src: "…", alt: "…" }]} />` |
+| `Stat` | `<Stat value="+60%" label="study time in user testing" />` |
+| `Callout` | `<Callout>Key insight…</Callout>` |
+| `YouTube` | `<YouTube id="dQw4w9WgXcQ" title="…" />` (loads only on click) |
+| `XPost` | `<XPost url="https://x.com/…/status/…" />` |
+
+`##` headings appear in the case study's "On this page" list automatically.
+
+A video tile on the home page cycles through `previewFrames` (a list of image paths in the frontmatter) while it has the glasses' attention.
+
+## Deploying
+
+Set `NEXT_PUBLIC_SITE_URL` to the live domain (for example `https://alexli.com`) so link previews resolve. Old `/projects/<slug>` URLs redirect to the new pages.

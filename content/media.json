@@ -1,0 +1,134 @@
+{
+  "/work/about/portrait.webp": {
+    "width": 500,
+    "height": 500
+  },
+  "/work/bloombums/cover.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/bloombums/liner-exploded.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/bloombums/liner.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/cyclogic/cover.webp": {
+    "width": 2400,
+    "height": 1602
+  },
+  "/work/cyclogic/figma-flows.webp": {
+    "width": 1932,
+    "height": 1394
+  },
+  "/work/cyclogic/friends.webp": {
+    "width": 390,
+    "height": 844
+  },
+  "/work/cyclogic/landing.webp": {
+    "width": 390,
+    "height": 844
+  },
+  "/work/cyclogic/navigation.webp": {
+    "width": 390,
+    "height": 844
+  },
+  "/work/dinosaurdle/cover.webp": {
+    "width": 2400,
+    "height": 1360
+  },
+  "/work/google-companion/at-desk.webp": {
+    "width": 2400,
+    "height": 1600
+  },
+  "/work/google-companion/concept-development.webp": {
+    "width": 1684,
+    "height": 1190
+  },
+  "/work/google-companion/cover.webp": {
+    "width": 2400,
+    "height": 1600
+  },
+  "/work/google-companion/exploded-render.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/google-companion/light-animation.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/google-companion/prototyping-testing.webp": {
+    "width": 1684,
+    "height": 1190
+  },
+  "/work/google-companion/render-dish.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/google-companion/render-exploded-dish.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/google-companion/render-kitchen.webp": {
+    "width": 2400,
+    "height": 1651
+  },
+  "/work/google-companion/render-roll.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/google-companion/render-shelf.webp": {
+    "width": 2400,
+    "height": 1561
+  },
+  "/work/google-companion/storyboard.webp": {
+    "width": 1684,
+    "height": 1190
+  },
+  "/work/kaikaku-fusion/frame-1.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/kaikaku-fusion/frame-2.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/kaikaku-fusion/frame-3.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/kaikaku-fusion/frame-4.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/kaikaku-fusion/frame-5.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/kaikaku-fusion/frame-6.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/kaikaku-fusion/frame-7.webp": {
+    "width": 1920,
+    "height": 1080
+  },
+  "/work/viapak/blister-test.webp": {
+    "width": 2400,
+    "height": 3200
+  },
+  "/work/viapak/cover.webp": {
+    "width": 2400,
+    "height": 1800
+  },
+  "/work/viapak/prototype-render.webp": {
+    "width": 1024,
+    "height": 576
+  },
+  "/work/viapak/user-test.webp": {
+    "width": 2400,
+    "height": 3200
+  }
+}
