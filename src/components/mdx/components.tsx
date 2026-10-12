@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Children, isValidElement, type ReactElement, type ReactNode } from "react";
 import { mediaSize } from "@/lib/content";
 import { GalleryGrid, YouTube, ZoomableFigure } from "./MediaClient";
 import { XPost } from "./XPost";
@@ -21,8 +21,26 @@ function Figure({ src, alt, caption }: { src: string; alt: string; caption?: str
   return <ZoomableFigure image={{ src, alt, caption, ...mediaSize(src) }} />;
 }
 
-function Gallery({ images }: { images: { src: string; alt: string; caption?: string }[] }) {
-  return <GalleryGrid images={images.map((img) => ({ ...img, ...mediaSize(img.src) }))} />;
+type FigureProps = { src: string; alt: string; caption?: string };
+
+/**
+ * A grid of images that open in a lightbox. List each image as a <Figure>:
+ *
+ *   <Gallery>
+ *     <Figure src="/work/x/a.webp" alt="…" />
+ *     <Figure src="/work/x/b.webp" alt="…" />
+ *   </Gallery>
+ *
+ * Plain tags only: next-mdx-remote strips {…} expressions from MDX.
+ */
+function Gallery({ children }: { children?: ReactNode }) {
+  const images = Children.toArray(children)
+    .filter((child) => isValidElement<FigureProps>(child) && typeof child.props.src === "string")
+    .map((child) => {
+      const { src, alt, caption } = (child as ReactElement<FigureProps>).props;
+      return { src, alt: alt ?? "", caption, ...mediaSize(src) };
+    });
+  return <GalleryGrid images={images} />;
 }
 
 function Stat({ value, label }: { value: string; label: string }) {

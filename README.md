@@ -67,13 +67,15 @@ The build fails with a clear message if frontmatter is missing or an image hasn'
 | Component | Example |
 | --- | --- |
 | `Figure` | `<Figure src="/work/x/flow.webp" alt="…" caption="…" />` |
-| `Gallery` | `<Gallery images={[{ src: "…", alt: "…" }]} />` |
+| `Gallery` | `<Gallery>` with a `<Figure src="…" alt="…" />` per image inside, then `</Gallery>` |
 | `Stat` | `<Stat value="+60%" label="study time in user testing" />` |
 | `Callout` | `<Callout>Key insight…</Callout>` |
 | `YouTube` | `<YouTube id="dQw4w9WgXcQ" title="…" />` (loads only on click) |
 | `XPost` | `<XPost url="https://x.com/…/status/…" />` |
 
 `##` headings appear in the case study's "On this page" list automatically.
+
+Use plain attributes only (`src="…"`), never `{…}` expressions: next-mdx-remote removes JavaScript expressions from MDX for security, so a prop written as `prop={…}` silently disappears.
 
 A video tile on the home page cycles through `previewFrames` (a list of image paths in the frontmatter) while it has the glasses' attention.
 

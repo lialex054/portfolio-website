@@ -1,7 +1,7 @@
 import "server-only";
 import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
+import { parse as parseYaml } from "yaml";
 import { z } from "zod";
 import media from "../../content/media.json";
 
@@ -53,9 +53,15 @@ export function mediaSize(src: string) {
   return size;
 }
 
+const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/;
+
 function load(slug: string): Project {
   const file = path.join(PROJECTS_DIR, slug, "index.mdx");
-  const { data, content } = matter(fs.readFileSync(file, "utf8"));
+  const raw = fs.readFileSync(file, "utf8");
+  const match = FRONTMATTER.exec(raw);
+  if (!match) throw new Error(`Missing frontmatter (--- … ---) at the top of ${file}`);
+  const data: unknown = parseYaml(match[1]);
+  const content = raw.slice(match[0].length);
   const parsed = frontmatterSchema.safeParse(data);
   if (!parsed.success) {
     throw new Error(`Invalid frontmatter in ${file}:\n${parsed.error.message}`);
